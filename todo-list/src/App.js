@@ -4,16 +4,14 @@ import Form from './components/Form';
 import TodoItemList from './components/TodoItemList';
 
 class App extends Component {
-  id = 5; // 이미 0,1,2,3,4가 존재하므로 5으로 설정
+  id = 3; // 이미 0,1,2,3,4가 존재하므로 5으로 설정
 
   state = {
     input: '',
     todos: [
-      {id: 0, text: '형소법 (1/23 몫)', checked: false},
-      {id: 1, text: '경찰학 (1/25 몫)', checked: false},
-      {id: 2, text: '형법 예습', checked: false},
-      {id: 3, text: '형소법 예습', checked: false},
-      {id: 4, text: '오늘 운동 꼭!', checked: false}
+      {id: 0, text: '수망이랑 놀아주기', checked: false},
+      {id: 1, text: '운동', checked: false},
+      {id: 2, text: '샤워', checked: false}
     ]
   }
 
@@ -24,7 +22,7 @@ class App extends Component {
   }
 
   handleCreate = () => {
-    const {input, todos} = this.state;
+    const {input, todos} = this.state;  //tip) 변수로 지정해서 사용
     this.setState({
       input: '',      // 인풋 비우고
       todos: todos.concat({ // concat을 사용하여 배열에 추가
@@ -44,21 +42,62 @@ class App extends Component {
   handleToggele = (id) => {
     const {todos} = this.state;
 
-    //파라미터로 받은 id를 가지고 몇번째 아이템인지 찾는다.
+    /* 
+    # findIndex(테스트 함수) 메서드는 
+    제공된 테스트 함수를 만족하는 배열의 첫 번째 요소에 대한 인덱스를 반환합니다. 
+    그렇지 않으면 -1을 반환합니다. 
+    
+    # ES6 화살표 함수
+    () => { ... } // 인수가 없을 때
+    x => { ... } // 인수가 하나일 때
+    (x, y) => { ... } // 인수가 여러 개일 때
+    
+    x => { return x * x }  // 블록을 사용
+    x => x * x  // 표현식. 위와 동일
+    =======================================
+    todo => todo.id 의 의미 : todo를 인수로 받아서 todo.id를 리턴한다
+    그것이 TodoItem이 넘겨준 id와 같은 인덱스를 찾아서 반환한다.
+    */
+
+   //파라미터로 받은 id를 가지고 몇번째 아이템인지 찾는다.
     const index = todos.findIndex(todo => todo.id === id);
+
     const selected = todos[index]; // 선택한 객체
-
+    /*
+    # 스프레드 연산자(전개 연산자)
+    ex)[...state], {...state} 
+    : Array 결합이나 복사 등등
+    1. 결합
+    var arr1 = ['two', 'three'];
+    var arr2 = ['one', ...arr1, 'four', 'five'];
+    // expected value : ["one", "two", "three", "four", "five"]
+    2. 복사
+    var arr = [1,2,3];
+    var arr2 = [...arr]; // like arr.slice()
+    arr2.push(4)
+    // expected value : [1,2,3,4]
+    */
     const nextTodos = [...todos]; // 배열을 복사
-
     //기존의 값들을 복사하고, checked 값을 덮어쓰기 
     nextTodos[index] = {
       ...selected,
       checked: !selected.checked
     };
-
     this.setState({
       todos: nextTodos
     })
+  }
+
+  handleRemove = (id) => {
+    const {todos} = this.state;
+    /* 
+     # filter() 메서드는 
+     주어진 판별 함수를 통과하는 요소를 모아 새로운 배열로 만들어 반환합니다
+    */
+    this.setState({
+      //id가 일치하는거 빼고 새로운 배열로 교체
+      todos: todos.filter(todo => todo.id !== id)
+    });
   }
 
   render() {
@@ -67,8 +106,8 @@ class App extends Component {
       handleChange,
       handleCreate,
       handleKeyPress,
-      handleToggele
-
+      handleToggele,
+      handleRemove
     } = this;
     
     return (
@@ -82,7 +121,8 @@ class App extends Component {
         }>
           <TodoItemList 
             todos={todos}
-            onToggle={handleToggele}/>
+            onToggle={handleToggele}
+            onRemove={handleRemove}/>
         </TodoListTemplate>
       </div>
     );
