@@ -10,6 +10,12 @@
     border-bottom: 1px solid #c5f6fa;
 }
 
+input::placeholder {
+ color: rgb(121, 118, 118);
+ font-style: italic;
+ font-size: 0.8rem;
+}
+
 .create-button {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;

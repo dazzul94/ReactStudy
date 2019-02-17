@@ -11,8 +11,11 @@ const TodoListTemplate = ({pallete, form, children}) => {
     // form 은 <TodoListTemplate form={<div>이렇게 말이죠.</div>}> --JSX 형태(Javascript + XML) 
     return (
         <main className="todo-list-template">
-            <div className="title">
+            <section className="title">
                 수지의 오늘 할 일
+            </section>
+            <div className="header">
+                ㅠㅠ
             </div>
             <section className="pallete-wrapper">
                 {pallete}

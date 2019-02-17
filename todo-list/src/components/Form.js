@@ -9,7 +9,8 @@ import './Form.css';
 const Form = ({value, selectedColor, onChange, onCreate, onKeyPress}) => {
     return (
         <div className="form">
-            <input value={value} 
+            <input placeholder="이곳에 할 일을 입력해주세요"
+                   value={value} 
                    onChange={onChange} 
                    onKeyPress={onKeyPress}
                    style={{color:selectedColor}}/>

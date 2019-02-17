@@ -26,6 +26,10 @@ class App extends Component {
 
   handleCreate = () => {
     const {input, todos, selectedColor} = this.state;  //tip) 변수로 지정해서 사용
+    if(input === '') {
+      alert("할 일을 입력해주세요.");
+      return;
+    }
     this.setState({
       input: '',      // 인풋 비우고
       todos: todos.concat({ // concat을 사용하여 배열에 추가
