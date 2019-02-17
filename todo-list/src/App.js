@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TodoListTemplate from './components/TodoListTemplate';
 import Form from './components/Form';
 import TodoItemList from './components/TodoItemList';
+import Pallete from './components/Pallete';
 
 class App extends Component {
   id = 3; // 이미 0,1,2,3,4가 존재하므로 5으로 설정
@@ -9,10 +10,12 @@ class App extends Component {
   state = {
     input: '',
     todos: [
-      {id: 0, text: '수망이랑 놀아주기', checked: false},
-      {id: 1, text: '운동', checked: false},
-      {id: 2, text: '샤워', checked: false}
-    ]
+      {id: 0, text: '수망이랑 놀아주기', checked: false, selectedColor: '#f03e3e', isImportant: true},
+      {id: 1, text: '운동', checked: false, selectedColor: '#12b886', isImportant: false},
+      {id: 2, text: '샤워', checked: false, selectedColor: '#343a40', isImportant: true}
+    ],
+    colors: ['#343a40', '#f03e3e', '#12b886', '#228ae6'],
+    selectedColor: '#343a40'  //default: 검정색
   }
 
   handleChange = (e) => {
@@ -22,13 +25,14 @@ class App extends Component {
   }
 
   handleCreate = () => {
-    const {input, todos} = this.state;  //tip) 변수로 지정해서 사용
+    const {input, todos, selectedColor} = this.state;  //tip) 변수로 지정해서 사용
     this.setState({
       input: '',      // 인풋 비우고
       todos: todos.concat({ // concat을 사용하여 배열에 추가
         id: this.id++,
         text: input,
-        checked: false
+        checked: false,
+        selectedColor: selectedColor
       })
     });
   }
@@ -100,29 +104,62 @@ class App extends Component {
     });
   }
 
+  //color를 누르면 input text color가 바뀌어야한다.
+  handleColorClick = (colorIdx) => {
+    this.setState({
+      selectedColor : this.state.colors[colorIdx]
+    });
+  }
+
+  //color를 누르면 input text color가 바뀌어야한다.
+  handleImportantClick = (colorIdx) => {
+    const {todos} = this.state;
+    const index = todos.findIndex(todo => todo.id === colorIdx);
+    const selected = todos[index]; // 선택한 객체
+    const nextTodos = [...todos]; // 배열을 복사
+    nextTodos[index] = {
+      ...selected,
+      isImportant: !selected.isImportant
+    };
+    this.setState({
+      todos: nextTodos
+    })
+  }
+ 
   render() {
-    const { input,todos } = this.state;
+    const { input, todos, colors, selectedColor } = this.state;
     const {
       handleChange,
       handleCreate,
       handleKeyPress,
       handleToggele,
-      handleRemove
+      handleRemove,
+      handleColorClick,
+      handleImportantClick
     } = this;
     
     return (
       <div>
-        <TodoListTemplate form={
-          <Form 
-            value={input}
-            onCreate={handleCreate}
-            onChange={handleChange}
-            onKeyPress={handleKeyPress}/>
-        }>
+        <TodoListTemplate 
+          pallete={
+            <Pallete 
+              colors={colors}
+              colorClick={handleColorClick}/>
+          }
+          form={
+            <Form 
+              value={input}
+              selectedColor={selectedColor}
+              onCreate={handleCreate}
+              onChange={handleChange}
+              onKeyPress={handleKeyPress}/>
+          }
+        >
           <TodoItemList 
             todos={todos}
             onToggle={handleToggele}
-            onRemove={handleRemove}/>
+            onRemove={handleRemove}
+            onImportantClick= {handleImportantClick}/>
         </TodoListTemplate>
       </div>
     );

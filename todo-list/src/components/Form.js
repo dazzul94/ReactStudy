@@ -6,10 +6,13 @@ import './Form.css';
 // onCreate : 클릭 이벤트
 // onChange : 내용 바뀔때 이벤트
 // onKeyPress : 키 입력시 이벤트(Enter 눌렀을 때 onCreate 하는 작업)
-const Form = ({value, onChange, onCreate, onKeyPress}) => {
+const Form = ({value, selectedColor, onChange, onCreate, onKeyPress}) => {
     return (
         <div className="form">
-            <input value={value} onChange={onChange} onKeyPress={onKeyPress}/>
+            <input value={value} 
+                   onChange={onChange} 
+                   onKeyPress={onKeyPress}
+                   style={{color:selectedColor}}/>
             <div className="create-button" onClick={onCreate}>
                 추가
             </div>

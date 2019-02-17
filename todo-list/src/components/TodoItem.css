@@ -21,12 +21,17 @@
   border-top: 1px solid #f1f3f5;
 }
 
-
 .remove {
   margin-right: 1rem;
   color: #e64980;
   font-weight: 600;
   opacity: 0;
+}
+
+.important {
+  margin-right: 1rem;
+  color: #ffd43b;
+  font-weight: 600;
 }
 
 .todo-text {

@@ -1,7 +1,7 @@
 import React from 'react';
 import './TodoListTemplate.css';
 
-const TodoListTemplate = ({form, children}) => {
+const TodoListTemplate = ({pallete, form, children}) => {
     //이 컴포넌트는 함수형 컴포넌트이다 . 
     // 파라미터로 받게 되는 것은 props인데 이를 '비구조화 할당' 하여 
     // 원래 (props) => {...}로 해야하는 것을
@@ -14,6 +14,9 @@ const TodoListTemplate = ({form, children}) => {
             <div className="title">
                 수지의 오늘 할 일
             </div>
+            <section className="pallete-wrapper">
+                {pallete}
+            </section>
             <section className="form-wrapper">
                 {form}
             </section>
