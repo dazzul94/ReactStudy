@@ -9,8 +9,13 @@ import './TodoItem.css';
 // onRemove: 아이템을 삭제시키는 함수
 
 class TodoItem extends Component {
+    shouldComponentUpdate(nextProps, nextState) {
+        return this.props.checked !== nextProps.checked;
+    }
+
     render() {
         const {text, checked, id, onToggle, onRemove} = this.props;
+        //console.log(id);
         return (
             <div className="todo-item" onClick={() => onToggle(id)}>
                 <div className="remove" onClick={(e) => {
