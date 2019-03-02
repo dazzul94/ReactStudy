@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="js/react.js"></script>     <!-- React 라이브러리를 불러온다-->
+        <script src="js/react-dom.js"></script> <!-- ReactDOM 라이브러리를 불러온다-->
+    </head>
+    <body>
+        <div id="content"></div>                <!-- Hello World 뷰를 위한 React 코드를 작성한다-->
+        <script type="text/javascript">         // <div>요소를 정의하여 React UI를 추가한다.
+
+            // React 엘리먼트를 직접 <body>에 렌더링하지 않는 이유는?
+            // --> 다른 라이브러리나 <body>를 조작하는 브라우저 확장 프로그램과 충돌하는 것을 방지하기 위해서이다
+            // --> <body>에 직접 추가하려고 하면 Rendering omponents directly into dovumnet.body is discouraged... 오류메시지 출력됌
+
+            // React 엘리먼트 생성(React.createElement(elementName, data, child))
+            // 1. elementName: HTML 태그명
+            // 2. data: 넘겨받는 정적인 데이터 
+            // 3. child: 자식 엘리먼트나 태그 내부에 작성하는 텍스트(내용)
+
+            /* 
+            var h1 = React.createElement('h1', null, 'Hello world!!!')      // h1 요소를 React 엘리먼트로 생성하여 변수에 담는다.
+            ReactDOM.render(
+                h1,                                                         // h1 요소를 ID가 content인 실제 DOM에 렌더링한다.
+                document.getElementById('content')
+            )
+            */
+            
+            ReactDOM.render(
+                React.createElement('h1', null, 'Hello world!!!'),          // h1 요소를 ID가 content인 실제 DOM에 렌더링한다.
+                document.getElementById('content')
+            )
+        </script>
+    </body>
+</html>
