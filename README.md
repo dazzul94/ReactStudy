@@ -12,7 +12,6 @@
 6. ~~고객(수지) 요구사항2: 수망이 사진을 배경으로 넣어주세요~~
 7. ~~**input에 내용 입력 안했을 때 추가되지 않도록 막는 이벤트 추가**~~
 8.  ~~**input에 default value 추가**~~
----
 9.  *복습*(*다시만들어보기*)
 10. material-ui 에서 버튼적용
 
@@ -20,5 +19,5 @@
 
 ### 2. react-textbook (2019-03-02~) 리액트 교과서
 1. ch01/hello-world
-- 정적인 HTTP 웹서버 만들기
+- 정적인 HTTP 웹서버 만들기(Bitnami)
 > 참고(https://opentutorials.org/course/3084/18893)
