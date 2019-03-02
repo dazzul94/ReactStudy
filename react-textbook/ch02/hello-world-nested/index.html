@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="js/react.js"></script>
+        <script src="js/react-dom.js"></script>
+    </head>
+    <body>
+        <div id="content"></div>
+        <script type="text/javascript">
+            let h1 = React.createElement('h1', null, 'Hello world!!!'); // createElement의 세번째 파라미터의 값이 문자열이면 이는 텍스트값이다.
+            
+            // ReactDom.render 함수는 오직 하나의 요소만 렌더링할 수 있다. 
+            // createElement의 세번째 또는 그 이후의 파라미터의 값이 문자열이 아니라면 이는 자식요소이다.
+            ReactDOM.render(
+                React.createElement('div', null, h1, h1),
+                document.getElementById('content')
+            )
+        </script>
+    </body>
+</html>
