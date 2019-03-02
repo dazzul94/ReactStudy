@@ -23,3 +23,6 @@
     -  [Bitnami](https://opentutorials.org/course/3084/18893)
     -  node http-server 구축
         - npm install -g http-server
+2. ch02 
+- 리팩토링(script파일 분리)
+- 자식엘리먼트로 부모컴포넌트의 속성(props) 전달
