@@ -29,5 +29,6 @@
 - 자식엘리먼트로 부모컴포넌트의 속성(props) 전달
 3. ch03 (교재 3.3)
 - JSX 적용(babel-cli)
-  - package.json에 명령어 저장해놓고 npm run build-PROJECT_NAME으로 jsx파일을 js파일로 transpile한다.
+  - package.json에 명령어 저장해놓고 jsx파일을 js파일로 transpile한다
+    - npm run build-PROJECT_NAME
 -  JSX에서 변수 출력(백틱(`)과 ${varName} 문자열템플릿 이용)
